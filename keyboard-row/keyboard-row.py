@@ -1,23 +1,21 @@
 class Solution:
     def findWords(self, words: List[str]) -> List[str]:
-        keyboard_dic = {}
-        for c in 'qwertyuiop' :
-            keyboard_dic[c] = 1
+        keyboard_list = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
+        output =[]
+        for i in range(len(words)):
+            row = None
+            if words[i][0].lower() in keyboard_list[0]:
+                row = 0
+            elif words[i][0].lower() in keyboard_list[1]:
+                row = 1
+            else :
+                row = 2
 
-        for c in 'asdfghjkl' :
-            keyboard_dic[c] = 2
 
-        for c in 'zxcvbnm' :
-            keyboard_dic[c] = 3
-
-        l = []
-        for word in words:
-            for i in range(len(word)-1):
-                if keyboard_dic[word[i].lower()] != keyboard_dic[word[i+1].lower()] :
-                    l.append(word)
+            for j in range(len(words[i])) :
+                if words[i][j].lower() not in keyboard_list[row] :
                     break
+                if j == len(words[i])-1 :
+                    output.append(words[i])
 
-        for word in l :
-            words.remove(word)
-
-        return words
+        return output
