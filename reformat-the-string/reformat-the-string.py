@@ -1,35 +1,27 @@
 class Solution:
     def reformat(self, s: str) -> str:
-        digit_list, char_list = [], []
-        for c in s :
-
-            if c.isdigit() :
-                digit_list.append(c)
+        
+        alpha = []
+        digits = []
+        for letter in s:
+            if letter.isalpha():
+                alpha.append(letter)
             else:
-                char_list.append(c)
+                digits.append(letter)
+                
+        answer = []
+        useAlpha: bool = len(alpha) > len(digits)
+        
+        while True:
+            if useAlpha:
+                if not alpha:
+                    break
+                answer.append(alpha.pop())
+            else:
+                if not digits:
+                    break
+                answer.append(digits.pop())
 
-        if (len(digit_list) ==0 and len(char_list) !=1) or (len(digit_list) !=1 and len(char_list) ==0) or abs(len(digit_list)-len(char_list)) > 1 :
-            return ""
-
-        output = ""
-        i,j =0,0
-        if len(digit_list) <= len(char_list) :
-            for k in range(len(s)):
-                if(k%2 ==0) :
-                    output += char_list[j]
-                    j+=1
-                else :
-                    output += digit_list[i]
-                    i+=1
-
-
-        else :
-            for k in range(len(s)):
-                if(k%2 ==0) :
-                    output += digit_list[i]
-                    i+=1
-                else :
-                    output += char_list[j]
-                    j+=1
-
-        return output
+            useAlpha = not useAlpha
+        
+        return answer if not alpha and not digits else ""
