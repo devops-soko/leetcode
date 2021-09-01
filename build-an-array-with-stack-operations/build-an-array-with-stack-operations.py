@@ -9,7 +9,6 @@ class Solution:
                     start =i+1
                     break
                 else :
-                    output.append("Push")
-                    output.append("Pop")
+                    output += ["Push", "Pop"]
 
         return output
