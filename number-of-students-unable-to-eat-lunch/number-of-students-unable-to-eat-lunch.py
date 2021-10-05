@@ -1,14 +1,10 @@
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
-        while True:
-            s = students.pop(0)
-            if s == sandwiches[0] :
+        while sandwiches and sandwiches[0] in students:
+            if students[0] == sandwiches[0] :
+                students.pop(0)
                 sandwiches.pop(0)
-            else :
+            else:
+                s = students.pop(0)
                 students.append(s)
-
-            if len(students) == 0:
-                break
-            if sandwiches[0] not in students :
-                break
         return len(students)
