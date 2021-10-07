@@ -1,15 +1,15 @@
 class Solution:
     def makeGood(self, s: str) -> str:
-        flag = True
-        while flag:
-            length = len(s)
-            if length <=1 :
-                break
-            for i in range(0, length):
-                if s[i] != s[i+1] and s[i].lower() == s[i+1].lower():
-                    s=s[0:i] + s[i+2:]
-                    break
-                if i+1 >= length -1:
-                    flag = False
-                    break
+        i = 0
+        length = len(s)
+        while i < length -1 :
+            if s[i] != s[i+1] and s[i].lower() == s[i+1].lower():
+                s=s[0:i] + s[i+2:]
+
+                if i != 0:
+                    i -= 1
+                length -=2
+                continue
+            i +=1
+
         return s
