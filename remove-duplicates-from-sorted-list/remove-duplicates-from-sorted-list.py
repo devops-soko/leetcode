@@ -16,3 +16,8 @@ class Solution:
             else :   
                 cur.next = cur.next.next
         return head
+    
+    
+    
+    
+    
